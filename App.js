@@ -10,7 +10,7 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import combineReducers from './src/reducers';
-import LoginScreen from './src/screens/login/LoginScreen';
+import { Navigation } from './src/navigation';
 
 const initialState = {};
 const store = createStore(combineReducers, initialState);
@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <LoginScreen />
+        <Navigation />
       </Provider>
     );
   }
