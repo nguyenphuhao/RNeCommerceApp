@@ -1,0 +1,18 @@
+image: node:latest
+stages:
+  - lint
+  - test
+
+before_script:
+  - npm install
+
+static code analysis:
+  stage: lint
+  script: 
+    - echo 'linting is running of javascript and css'
+    - npm run lint
+run unit test:
+  stage: test
+  script:
+    - echo 'unit test is running with coverage report' 
+    - npm test
