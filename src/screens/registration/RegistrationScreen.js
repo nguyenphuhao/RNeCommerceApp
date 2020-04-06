@@ -3,12 +3,20 @@ import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Background from '../../assets/img/login-background.svg';
 import styles from './styles';
+import { NavigationConstants } from '../../constants';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
+const RegistrationScreen = () => {
+  const navigation = useNavigation();
   const [fullName, setFullName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const onPressSignIn = () => {
+    const { navigate } = navigation;
+    navigate(NavigationConstants.Login);
+  };
   return (
     <>
       <Background width={'100%'} height={'100%'} style={styles.background} />
@@ -53,7 +61,11 @@ const LoginScreen = () => {
         </KeyboardAvoidingView>
         <View style={styles.action}>
           <Button testId={'tstSignUp'} title="SIGN UP" />
-          <Text testId={'tstSignIn'} style={styles.signInText}>
+          <Text
+            testId={'tstSignIn'}
+            style={styles.signInText}
+            onPress={onPressSignIn}
+          >
             Already have account? Sign in
           </Text>
         </View>
@@ -62,4 +74,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegistrationScreen;

@@ -21,20 +21,21 @@ const CategoryList = ({ data }) => {
     <>
       {data && data.length ? (
         <ScrollView style={styles.productList}>
-          {data.map(category => {
+          {data.map((category) => {
             return (
               <>
                 {renderCategory({ category })}
-                <View key={`product-group-${category.id}`}>
-                  <View style={styles.productItems}>
-                    {category.products && category.products.length ? (
-                      category.products.map(product => {
-                        return <ProductItem product={product} />;
-                      })
-                    ) : (
-                      <Text style={styles.noProduct}>No Product</Text>
-                    )}
-                  </View>
+                <View
+                  key={`product-group-${category.id}`}
+                  style={styles.productItems}
+                >
+                  {category.products && category.products.length ? (
+                    category.products.map((product) => {
+                      return <ProductItem product={product} />;
+                    })
+                  ) : (
+                    <Text style={styles.noProduct}>No Product</Text>
+                  )}
                 </View>
               </>
             );

@@ -18,6 +18,9 @@ const cateList = [
         discount: null,
         img:
           'http://34.73.95.65/image/thumbnails/18/70/demo_product05_jpg-100101-250x250.jpg',
+        description: `This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish. 
+
+          This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish`,
       },
       {
         id: 1,
@@ -29,6 +32,23 @@ const cateList = [
         },
         img:
           'http://34.73.95.65/image/thumbnails/18/6a/demo_product07_jpg-100012-250x250.jpg',
+        description: `This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish. 
+
+This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish`,
+      },
+      {
+        id: 2,
+        productName: 'Product with stock locationsh',
+        price: '$31.00',
+        discount: {
+          oldPrice: '$34.00',
+          description: '9% Off',
+        },
+        img:
+          'http://34.73.95.65/image/thumbnails/18/6a/demo_product07_jpg-100012-250x250.jpg',
+        description: `This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish. 
+
+This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish`,
       },
     ],
   },
@@ -82,7 +102,7 @@ const cateList = [
 const MainScreen = () => {
   return (
     <>
-      <Header
+      {/* <Header
         containerStyle={styles.header}
         leftComponent={{ icon: 'menu', ...styles.headerLeft }}
         centerComponent={{
@@ -90,7 +110,7 @@ const MainScreen = () => {
           style: styles.headerTitle,
         }}
         rightComponent={{ icon: 'shopping-cart', ...styles.headerRight }}
-      />
+      /> */}
       <SearchBar
         containerStyle={styles.search}
         inputContainerStyle={styles.searchInput}

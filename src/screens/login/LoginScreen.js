@@ -4,25 +4,34 @@ import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginBackground from '../../assets/img/login-background.svg';
 import styles from './styles';
+import { NavigationConstants } from '../../constants';
 
 import { login } from '../../services/login';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
 
-  const authenticate = () => {
+  const onPressSignIn = () => {
     login({ loginname: emailAddress, password: password })
-      .then(token => {
-        Alert.alert('Login', 'Login successfully.', [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ]);
+      .then(() => {
+        navigation.navigate(NavigationConstants.ProductStack);
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.alert('Login', error.message, [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
+          { text: 'OK', onPress: () => {} },
         ]);
       });
+  };
+
+  const onPressSignUp = () => {
+    navigation.navigate(NavigationConstants.Registration);
+  };
+
+  const onPressSkipLogin = () => {
+    navigation.navigate(NavigationConstants.ProductStack);
   };
 
   return (
@@ -62,10 +71,16 @@ const LoginScreen = () => {
             testId={'tstSignIn'}
             title="SIGN IN"
             onPress={() => {
-              authenticate();
+              onPressSignIn();
             }}
           />
-          <Text testId={'tstSignUp'} style={styles.signUpText}>
+          <Text
+            testId={'tstSignUp'}
+            style={styles.signUpText}
+            onPress={() => {
+              onPressSignUp();
+            }}
+          >
             New Here? Sign Up
           </Text>
         </View>
@@ -76,6 +91,7 @@ const LoginScreen = () => {
           icon={<Icon name="arrow-right" size={20} color="#00a8f3" />}
           title="SKIP LOGIN "
           iconRight
+          onPress={onPressSkipLogin}
         />
       </View>
     </>

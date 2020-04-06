@@ -9,11 +9,14 @@ export default StyleSheet.create({
     flex: 6,
     textAlignVertical: 'center',
     textAlign: 'center',
-    ...Color.caption,
+    color: '#fff',
     elevation: 1,
   },
   form: {
     flex: 3,
+  },
+  input: {
+    color: '#fff',
   },
   action: {
     flex: 2,

@@ -2,10 +2,23 @@ import React from 'react';
 import { View } from 'react-native';
 import styles from './styles';
 import { Image, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationConstants } from '../../constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ProductItem = ({ product }) => {
+  const navigation = useNavigation();
+  const onPressProductItem = (product) => {
+    navigation.navigate(NavigationConstants.ProductDetail, { product });
+  };
   return (
-    <View key={`product-${product.id}`} style={styles.productItem}>
+    <TouchableOpacity
+      onPress={() => {
+        onPressProductItem(product);
+      }}
+      key={`product-${product.id}`}
+      style={styles.productItem}
+    >
       <Image style={styles.productImg} source={{ uri: product.img }} />
       <Text style={styles.productName}>{product.productName}</Text>
       <View style={styles.price}>
@@ -23,7 +36,7 @@ const ProductItem = ({ product }) => {
           </Text>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 export default ProductItem;

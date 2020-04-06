@@ -1,5 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { TextSize, Color } from '../../styles';
+
+import { Responsive } from '../../utils';
+
+const { height, width } = Dimensions.get('window'); // device height and width
+const { moderateScale, verticalScale } = Responsive(width, height);
 export default StyleSheet.create({
   productList: {
     padding: 10,
@@ -8,14 +13,12 @@ export default StyleSheet.create({
     borderColor: '#ebebeb',
   },
   productGroup: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
   },
   productGroupText: {
-    flex: 1,
     fontSize: TextSize.NORMAL_SIZE,
     color: Color.background.color,
   },
@@ -40,8 +43,8 @@ export default StyleSheet.create({
     paddingBottom: 10,
   },
   productItem: {
-    width: '49%',
-    height: 250,
+    width: width * 0.5 - 20,
+    height: verticalScale(250),
     justifyContent: 'flex-start',
     paddingHorizontal: 10,
     paddingVertical: 20,
