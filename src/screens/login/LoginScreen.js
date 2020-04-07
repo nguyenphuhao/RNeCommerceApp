@@ -32,7 +32,10 @@ const LoginScreen = () => {
   };
 
   const onPressSkipLogin = () => {
-    navigation.navigate(NavigationConstants.ProductStack);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: NavigationConstants.ProductStack }],
+    });
   };
 
   return (

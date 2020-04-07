@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationConstants } from '../constants';
 
 import LoginScreen from '../screens/login/LoginScreen';
 import RegistrationScreen from '../screens/registration/RegistrationScreen';
+import { RegistrationHeader } from '../components/header';
 
 const Stack = createStackNavigator();
 const AuthenticationStack = () => {
@@ -17,7 +18,10 @@ const AuthenticationStack = () => {
       <Stack.Screen
         name={NavigationConstants.Registration}
         component={RegistrationScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerTransparent: true,
+          header: () => <RegistrationHeader />
+        }}
       />
     </Stack.Navigator>
   );

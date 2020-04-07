@@ -1,32 +1,34 @@
 import * as React from 'react';
 
-import { NavigationConstants } from '../constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import ProductStack from './ProductStack';
 import AuthenticationStack from './AuthenticationStack';
+import * as NavigationOptions from './NavigationOptions';
+import { AppHeader } from '../components/header';
 
 const Stack = createStackNavigator();
 export const Navigation = () => {
+  const { ScreenName } = NavigationOptions;
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={NavigationConstants.AuthenticationStack}
+        initialRouteName={ScreenName.AuthenticationStack}
       >
         <Stack.Screen
-          name={NavigationConstants.AuthenticationStack}
+          name={ScreenName.AuthenticationStack}
           component={AuthenticationStack}
-          options={{ headerShown: false }}
+          options={{headerShown: false}}
         />
         <Stack.Screen
-          name={NavigationConstants.ProductStack}
+          name={ScreenName.ProductStack}
           component={ProductStack}
-          options={{
-            headerShown: false,
-          }}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+export const Options = { ...NavigationOptions };

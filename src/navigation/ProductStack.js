@@ -1,30 +1,25 @@
-import * as React from 'react';
-import { Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationConstants } from '../constants';
-
+import * as NavigationOptions from './NavigationOptions';
 import ProductDetailScreen from '../screens/product/ProductDetailScreen';
 import MainScreen from '../screens/main/MainScreen';
+import { AppHeader } from '../components/header';
 
 const Stack = createStackNavigator();
 const ProductStack = () => {
+  const { ScreenName } = NavigationOptions;
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: 'Home',
-        headerLeft: Platform.select({
-          ios: null,
-          android: <Icon name="md-menu" type="ionicon" />,
-        }),
+        header: () => <AppHeader />
       }}
-    >
+      initialRouteName={ScreenName.ProductList}>
       <Stack.Screen
-        name={NavigationConstants.ProductList}
+        name={ScreenName.ProductList}
         component={MainScreen}
       />
       <Stack.Screen
-        name={NavigationConstants.ProductDetail}
+        name={ScreenName.ProductDetail}
         component={ProductDetailScreen}
       />
     </Stack.Navigator>

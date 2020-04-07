@@ -11,6 +11,7 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     ...Color.caption,
     elevation: 1,
+    color: '#fff'
   },
   form: {
     flex: 4,

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Header, SearchBar } from 'react-native-elements';
+import { SearchBar } from 'react-native-elements';
+import { AppHeader } from '../../components/header';
 import styles from './styles';
 import CategoryList from '../../components/category/CategoryList';
 import ProductList from '../../components/product/ProductList';
@@ -102,15 +103,6 @@ This natural coverage concealer lets you instantly eliminate tell-tale signs of 
 const MainScreen = () => {
   return (
     <>
-      {/* <Header
-        containerStyle={styles.header}
-        leftComponent={{ icon: 'menu', ...styles.headerLeft }}
-        centerComponent={{
-          text: 'Ecommerce Store',
-          style: styles.headerTitle,
-        }}
-        rightComponent={{ icon: 'shopping-cart', ...styles.headerRight }}
-      /> */}
       <SearchBar
         containerStyle={styles.search}
         inputContainerStyle={styles.searchInput}

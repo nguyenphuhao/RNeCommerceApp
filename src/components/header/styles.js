@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { TextSize, Color } from '../../styles';
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   header: {
     backgroundColor: Color.background.color,
     borderBottomWidth: 0,
@@ -11,12 +11,18 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   headerRight: {
-    color: '#fff',
-    fontSize: TextSize.NORMAL_SIZE,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 10,
   },
   headerLeft: {
-    color: '#fff',
-    fontSize: TextSize.NORMAL_SIZE,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerRegistration: {
+    margin: 20,
   },
   search: {
     paddingHorizontal: 12,
@@ -28,4 +34,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-export default styles;

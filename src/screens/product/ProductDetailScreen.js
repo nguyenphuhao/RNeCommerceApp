@@ -31,15 +31,6 @@ const ProductDetailScreen = ({ route, navigation }) => {
   };
   return (
     <>
-      <Header
-        containerStyle={styles.header}
-        leftComponent={{ icon: 'menu', ...styles.headerLeft }}
-        centerComponent={{
-          text: '',
-          style: styles.headerTitle,
-        }}
-        rightComponent={renderRightComponent()}
-      />
       {/* <SearchBar
         containerStyle={styles.search}
         inputContainerStyle={styles.searchInput}
