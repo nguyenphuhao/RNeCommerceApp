@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Platform, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, TextInput, Platform, KeyboardAvoidingView, Alert } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginBackground from '../../assets/img/login-background.svg';
@@ -8,6 +8,7 @@ import { NavigationConstants } from '../../constants';
 
 import { login } from '../../services/login';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -21,7 +22,7 @@ const LoginScreen = () => {
       })
       .catch((error) => {
         Alert.alert('Login', error.message, [
-          { text: 'OK', onPress: () => {} },
+          { text: 'OK', onPress: () => { } },
         ]);
       });
   };
@@ -41,59 +42,64 @@ const LoginScreen = () => {
         height={'100%'}
         style={styles.background}
       />
-      <View style={styles.container}>
-        <Text testId={'tstCaption'} style={styles.caption} h3>
-          Ecommerce{'\n'}Store
-        </Text>
-        <KeyboardAvoidingView
-          style={styles.form}
-          behavior={Platform.Os === 'ios' ? 'padding' : 'height'}
-        >
-          <Input
-            testId={'tstEmailAddress'}
-            placeholder={'Email Address'}
-            value={emailAddress}
-            onChangeText={setEmailAddress}
-          />
-          <Input
-            testId={'tstPassword'}
-            placeholder={'Password'}
-            secureTextEntry={true}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <Text testId={'tstForgotPassword'} style={styles.forgotPasswordText}>
-            Forgot Password ?
-          </Text>
-        </KeyboardAvoidingView>
-        <View style={styles.action}>
-          <Button
-            testId={'tstSignIn'}
-            title="SIGN IN"
-            onPress={() => {
-              onPressSignIn();
-            }}
-          />
-          <Text
-            testId={'tstSignUp'}
-            style={styles.signUpText}
-            onPress={() => {
-              onPressSignUp();
-            }}
-          >
-            New Here? Sign Up
-          </Text>
-        </View>
-        <Button
-          testId={'tstSkipLogin'}
-          containerStyle={styles.skipLogin}
-          type="clear"
-          icon={<Icon name="arrow-right" size={20} color="#00a8f3" />}
-          title="SKIP LOGIN "
-          iconRight
-          onPress={onPressSkipLogin}
-        />
-      </View>
+      <KeyboardAvoidingView
+        style={styles.keyBoardView}
+        behavior={Platform.Os === 'ios' ? 'padding' : null}
+      >
+        <ScrollView>
+          <View style={styles.container}>
+            <Text testId={'tstCaption'} style={styles.caption} h3>
+              Ecommerce{'\n'}Store
+            </Text>
+            <Input
+              containerStyle={styles.input}
+              testId={'tstEmailAddress'}
+              placeholder={'Email Address'}
+              value={emailAddress}
+              onChangeText={setEmailAddress}
+            />
+            <Input
+              containerStyle={styles.input}
+              testId={'tstPassword'}
+              placeholder={'Password'}
+              secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
+            />
+            <Text
+              testId={'tstForgotPassword'}
+              style={styles.forgotPasswordText}
+            >
+              Forgot Password ?
+            </Text>
+            <Button
+              testId={'tstSignIn'}
+              title="SIGN IN"
+              onPress={() => {
+                onPressSignIn();
+              }}
+            />
+            <Text
+              testId={'tstSignUp'}
+              style={styles.signUpText}
+              onPress={() => {
+                onPressSignUp();
+              }}
+            >
+              New Here? Sign Up
+            </Text>
+            <Button
+              testId={'tstSkipLogin'}
+              containerStyle={styles.skipLogin}
+              type="clear"
+              icon={<Icon name="arrow-right" size={20} color="#00a8f3" />}
+              title="SKIP LOGIN "
+              iconRight
+              onPress={onPressSkipLogin}
+            />
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </>
   );
 };
