@@ -3,7 +3,7 @@ import { token, unauthorized } from '../constants';
 import { hasAuthorized } from './login';
 import { request } from './common';
 
-export const callAPI = async (
+export const sendRequest = async (
   url,
   { method, body },
   shouldAuthorized = true,
@@ -24,3 +24,5 @@ export const callAPI = async (
     }
   }
 };
+
+export { default as AuthAPI } from './login';

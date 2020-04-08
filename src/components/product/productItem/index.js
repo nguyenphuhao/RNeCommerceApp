@@ -2,20 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import styles from './styles';
 import { Image, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationConstants } from '../../constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const ProductItem = ({ product }) => {
-  const navigation = useNavigation();
-  const onPressProductItem = (product) => {
-    navigation.navigate(NavigationConstants.ProductDetail, { product });
-  };
+const ProductItem = ({ product, onPressProductItem }) => {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        onPressProductItem(product);
-      }}
+    <TouchableOpacity onPress={() => { onPressProductItem(product); }}
       key={`product-${product.id}`}
       style={styles.productItem}
     >

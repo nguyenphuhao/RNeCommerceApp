@@ -1,9 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Header, Icon } from 'react-native-elements';
-import styles from './styles';
-import ProductDetail from '../../components/product/productDetail';
-import { useNavigation } from '@react-navigation/native';
+import { ProductDetail } from '../../components';
 
 const product = {
   id: 0,
@@ -20,24 +16,9 @@ const product = {
 
 This natural coverage concealer lets you instantly eliminate tell-tale signs of stress and fatigue. Provides complete, natural-looking coverage, evens skin tone, covers dark circles and minimizes fine lines around the eyes. The Result: A soft, matte finish`,
 };
-const ProductDetailScreen = ({ route, navigation }) => {
-  const renderRightComponent = () => {
-    return (
-      <View style={styles.headerRight}>
-        <Icon name="search" type="font-awesome" color="#fff" />
-        <Icon name="shopping-cart" type="font-awesome" color="#fff" />
-      </View>
-    );
-  };
+const ProductDetailScreen = ({ route }) => {
   return (
     <>
-      {/* <SearchBar
-        containerStyle={styles.search}
-        inputContainerStyle={styles.searchInput}
-        placeholder="Search for products"
-        onChangeText={() => {}}
-        value={''}
-      /> */}
       <ProductDetail product={route.params.product} />
     </>
   );

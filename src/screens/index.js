@@ -1,0 +1,13 @@
+export {default as CallScreen} from './call';
+export {default as CartScreen} from './cart';
+export {default as EmailScreen} from './email';
+export {default as LoginScreen} from './login';
+export {default as MainScreen} from './main';
+export {default as OrderScreen} from './order';
+export {default as OrderDetailScreen} from './orderDetail';
+export {default as ProductDetailScreen} from './productDetail';
+export {default as ProfileScreen} from './profile';
+export {default as RegistrationScreen} from './registration';
+export {default as ShareScreen} from './share';
+export {default as WishListScreen} from './wishlist';
+export {default as SplashScreen} from './splash';

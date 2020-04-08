@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Platform, KeyboardAvoidingView, Alert } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,19 +6,20 @@ import LoginBackground from '../../assets/img/login-background.svg';
 import styles from './styles';
 import { NavigationConstants } from '../../constants';
 
-import { login } from '../../services/login';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { AuthContext } from '../../contexts';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
+  const { signIn } = useContext(AuthContext);
 
   const onPressSignIn = () => {
-    login({ loginname: emailAddress, password: password })
+    signIn({ loginname: emailAddress, password: password })
       .then(() => {
-        navigation.navigate(NavigationConstants.ProductStack);
+        //
       })
       .catch((error) => {
         Alert.alert('Login', error.message, [

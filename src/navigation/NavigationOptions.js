@@ -1,12 +1,4 @@
-const ScreenName = {
-  AuthenticationStack: 'AuthenticationStack',
-  ProductStack: 'ProductStack',
-  Home: 'Home',
-  ProductList: 'ProductList',
-  ProductDetail: 'ProductDetail',
-  Login: 'Login',
-  Registration: 'Registration',
-};
+import { ScreenName } from '../constants';
 
 const screens = [
   {
@@ -18,7 +10,7 @@ const screens = [
     headerTitle: ''
   },
   {
-    name: ScreenName.ProductList,
+    name: ScreenName.Main,
     headerTitle: 'Ecommerce Store'
   },
   {
@@ -33,14 +25,41 @@ const screens = [
     name: ScreenName.Registration,
     headerTitle: ''
   },
+  {
+    name: ScreenName.Profile,
+    headerTitle: 'My Profile',
+  },
+  {
+    name: ScreenName.WishList,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.Cart,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.Orders,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.Email,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.Call,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.Share,
+    headerTitle: ''
+  },
+  {
+    name: ScreenName.DrawerNav,
+    headerTitle: '',
+  },
 ]
 
-const getScreenOptions = (name) => {
-  const screen = screens.find(s => s.name === name );
+export const getScreenOptions = name => {
+  const screen = screens.find(s => s.name === name);
   return screen;
-}
-
-export {
-  ScreenName,
-  getScreenOptions
-}
+};

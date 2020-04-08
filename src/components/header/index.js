@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Header, Icon } from "react-native-elements";
+import { DrawerActions } from '@react-navigation/native';
 import styles from "./styles";
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useRoute, useNavigation, useNavigationState } from '@react-navigation/native';
-import { Options } from '../../navigation';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import * as Options from '../../navigation/NavigationOptions';
 
-export const HeaderMenu = () => {
+export const HeaderMenuButton = () => {
   const navigation = useNavigation();
+  const openDrawer = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  }
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity onPress={openDrawer}>
       <Icon
         name='bars'
         type='font-awesome'
@@ -19,7 +23,7 @@ export const HeaderMenu = () => {
   )
 }
 
-export const HeaderBack = () => {
+export const HeaderBackButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity>
@@ -36,7 +40,7 @@ export const HeaderBack = () => {
 
 export const HeaderLeft = () => {
   const navigation = useNavigation();
-  const chilrend = navigation.canGoBack() ? <HeaderBack /> : <HeaderMenu />
+  const chilrend = navigation.canGoBack() ? <HeaderBackButton /> : <HeaderMenuButton />
   return (
     <View style={styles.headerLeft}>
       {chilrend}
@@ -62,7 +66,7 @@ export const HeaderCenter = (props) => {
     </View>
   );
 }
-export const AppHeader = () => {
+export const AppHeaderBar = () => {
   return (
     <Header
       statusBarProps={{ translucent: true }}
@@ -75,7 +79,7 @@ export const AppHeader = () => {
   );
 };
 
-export const RegistrationHeader = () => {
+export const RegistrationHeaderBar = () => {
   return (
     <Header
       backgroundColor={'transparent'}
@@ -86,7 +90,7 @@ export const RegistrationHeader = () => {
   );
 }
 
-export const CartHeader = () => {
+export const CartHeaderBar = () => {
   return (
     <Header
       statusBarProps={{ translucent: true }}

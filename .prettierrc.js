@@ -1,5 +1,5 @@
 module.exports = {
-  trailingComma: 'all',
+  trailingComma: 'es6',
   tabWidth: 2,
   semi: true,
   singleQuote: true,

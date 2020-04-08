@@ -16,7 +16,7 @@ export const login = ({ loginname, password }) => {
     })
     .then(({ token }) => {
       if (token) {
-        return AsyncStorage.setItem(tokenConst, token);
+        return token;
       }
       throw new Error(unauthorized);
     });

@@ -1,9 +1,9 @@
 import React from 'react';
 import { SearchBar } from 'react-native-elements';
-import { AppHeader } from '../../components/header';
 import styles from './styles';
-import CategoryList from '../../components/category/CategoryList';
-import ProductList from '../../components/product/ProductList';
+import { CategoryList, ProductList } from '../../components';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenName } from '../../constants';
 
 const cateList = [
   {
@@ -101,17 +101,21 @@ This natural coverage concealer lets you instantly eliminate tell-tale signs of 
 ];
 
 const MainScreen = () => {
+  const navigation = useNavigation();
+  const onPressProductItem = (product) => {
+    navigation.navigate(ScreenName.ProductDetail, { product });
+  };
   return (
     <>
       <SearchBar
         containerStyle={styles.search}
         inputContainerStyle={styles.searchInput}
         placeholder="Search for products"
-        onChangeText={() => {}}
+        onChangeText={() => { }}
         value={''}
       />
       <CategoryList data={cateList} />
-      <ProductList data={cateList} />
+      <ProductList data={cateList} onPressProductItem={onPressProductItem}  />
     </>
   );
 };

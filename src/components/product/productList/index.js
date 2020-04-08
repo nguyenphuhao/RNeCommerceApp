@@ -3,9 +3,9 @@ import { View } from 'react-native';
 import styles from './styles';
 import { ScrollView, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ProductItem from './ProductItem';
+import ProductItem from '../productItem';
 
-const CategoryList = ({ data }) => {
+const ProductList = ({ data, onPressProductItem }) => {
   const renderCategory = ({ category }) => {
     return (
       <View key={`category-${category.id}`} style={styles.productGroup}>
@@ -31,21 +31,21 @@ const CategoryList = ({ data }) => {
                 >
                   {category.products && category.products.length ? (
                     category.products.map((product) => {
-                      return <ProductItem product={product} />;
+                      return <ProductItem product={product} onPressProductItem={onPressProductItem} />;
                     })
                   ) : (
-                    <Text style={styles.noProduct}>No Product</Text>
-                  )}
+                      <Text style={styles.noProduct}>No Product</Text>
+                    )}
                 </View>
               </>
             );
           })}
         </ScrollView>
       ) : (
-        <Text style={styles.noProduct}>No Product</Text>
-      )}
+          <Text style={styles.noProduct}>No Product</Text>
+        )}
     </>
   );
 };
 
-export default CategoryList;
+export default ProductList;

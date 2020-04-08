@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { TextSize, Color } from '../../styles';
+import { TextSize, Color } from '../../../styles';
 
-import { Responsive } from '../../utils';
+import { Responsive } from '../../../utils';
 
 const { height, width } = Dimensions.get('window'); // device height and width
 const { moderateScale, verticalScale } = Responsive(width, height);
