@@ -10,22 +10,34 @@ export const toFormData = body => {
   return formData;
 };
 
-export const request = (url, { method, body }) => {
-  let fetchOptions = {
-    method,
-  };
-
-  switch (method) {
-    case 'POST':
-      const formData = toFormData(body);
-      fetchOptions = {
-        ...fetchOptions,
-        body: formData,
-      };
-      break;
-    default:
-      break;
+export const request = (url, req) => {
+  if (req) {
+    const formData = toFormData(req.body);
+    return fetch(url, {
+      method: req.method,
+      body: formData,
+    });
   }
+  return fetch(url);
+};
 
-  return fetch(url, fetchOptions);
+export const sendRequest = async (
+  url,
+  req,
+  shouldAuthorized = false,
+) => {
+  if (shouldAuthorized) {
+    const authToken = await AsyncStorage.getItem(token);
+    try {
+      await hasAuthorized({ token: authToken });
+    } catch (error) {
+      throw new Error(unauthorized);
+    }
+  }
+  try {
+    const result = await request(url, req);
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
 };

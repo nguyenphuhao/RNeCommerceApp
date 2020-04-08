@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import combineReducers from './src/reducers';
 import AppNavigation from './src/navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import { token } from './src/constants';
-import { login, hasAuthorized } from './src/services/login';
+import { token, unauthorized } from './src/constants';
+import { AuthAPI } from './src/services';
 import { AuthContext } from './src/contexts';
 import { SplashScreen } from './src/screens';
 
@@ -20,7 +20,7 @@ const App = () => {
     const bootstrapAsync = async () => {
       try {
         const authToken = await AsyncStorage.getItem(token);
-        await hasAuthorized({ token: authToken });
+        await AuthAPI.hasAuthorized({ token: authToken });
         setUserToken(authToken);
       } catch (error) {
         setUserToken(null);
@@ -32,11 +32,12 @@ const App = () => {
 
   const signIn = async ({ loginname, password }) => {
     try {
-      const authToken = await login({ loginname, password });
+      const authToken = await AuthAPI.login({ loginname, password });
       await AsyncStorage.setItem(token, authToken);
-      setUserToken(token, authToken);
+      setUserToken(authToken);
     } catch (error) {
-      setUserToken(token, null);
+      setUserToken(null);
+      throw new Error(unauthorized);
     }
   };
 

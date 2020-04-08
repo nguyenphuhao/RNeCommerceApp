@@ -1,15 +1,13 @@
-export const unauthorized = 'unauthorized';
+export const unauthorized = 'Login failed.';
+export const unexpected_error = 'The service is unavailable for now. Please contact the Administrator!';
 export const token = 'token';
 export const ScreenName = {
-  AuthenticationStack: 'AuthenticationStack',
-  ProductStack: 'ProductStack',
   Home: 'Home',
   Main: 'Main',
   ProductDetail: 'ProductDetail',
   Login: 'Login',
   Registration: 'Registration',
   Profile: 'Profile',
-  DrawerNav: 'DrawerNav',
   WishList: 'WishList',
   Cart: 'Cart',
   Orders: 'Orders',

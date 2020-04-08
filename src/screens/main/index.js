@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchBar } from 'react-native-elements';
 import styles from './styles';
 import { CategoryList, ProductList } from '../../components';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenName } from '../../constants';
+import { CatalogAPI } from '../../services';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCategories } from '../../actions/CatalogAction';
 
 const cateList = [
   {
@@ -102,6 +105,23 @@ This natural coverage concealer lets you instantly eliminate tell-tale signs of 
 
 const MainScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  const { categories } = useSelector(state => {
+    return {
+      categories: state.catalogReducer.categories
+    }
+  })
+
+  useEffect(() => {
+    CatalogAPI.getCategories().then((category) => {
+      const subCates = category && category.subcategories;
+      dispatch(getCategories(subCates));
+    }).catch(() => {
+      dispatch(getCategories([]));
+    });
+  }, []);
+
   const onPressProductItem = (product) => {
     navigation.navigate(ScreenName.ProductDetail, { product });
   };
@@ -114,8 +134,8 @@ const MainScreen = () => {
         onChangeText={() => { }}
         value={''}
       />
-      <CategoryList data={cateList} />
-      <ProductList data={cateList} onPressProductItem={onPressProductItem}  />
+      <CategoryList categories={categories} />
+      <ProductList data={cateList} onPressProductItem={onPressProductItem} />
     </>
   );
 };

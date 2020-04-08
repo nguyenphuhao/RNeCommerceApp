@@ -10,5 +10,8 @@ export const setUpAPIEndPoint = (host = apiEndPoint, key = apiKey) => {
     customer: {
       login: getEndPoint('a/account/login'),
     },
+    catalog: {
+      categories: getEndPoint('a/product/category'),
+    },
   };
 };

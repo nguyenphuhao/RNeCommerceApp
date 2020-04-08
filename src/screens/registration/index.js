@@ -3,7 +3,7 @@ import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Background from '../../assets/img/login-background.svg';
 import styles from './styles';
-import { NavigationConstants } from '../../constants';
+import { ScreenName } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 
 const RegistrationScreen = () => {
@@ -14,8 +14,7 @@ const RegistrationScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const onPressSignIn = () => {
-    const { navigate } = navigation;
-    navigate(NavigationConstants.Login);
+    navigation.navigate(ScreenName.Login);
   };
   return (
     <>

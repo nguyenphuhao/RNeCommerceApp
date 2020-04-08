@@ -13,6 +13,7 @@ export default StyleSheet.create({
     paddingBottom: 100,
     alignItems: 'center',
     height: '100%',
+    width: 110,
   },
   cateImg: {
     width: 68,
@@ -22,6 +23,7 @@ export default StyleSheet.create({
     borderRadius: 34,
   },
   cateName: {
+    textAlign: 'center',
     marginTop: 3,
   },
 });

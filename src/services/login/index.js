@@ -1,7 +1,5 @@
-import React from 'react';
 import { request } from '../common';
 import { unauthorized, token as tokenConst } from '../../constants';
-import AsyncStorage from '@react-native-community/async-storage';
 export const login = ({ loginname, password }) => {
   const url = global.API.customer.login;
   return request(url, {
@@ -34,3 +32,8 @@ export const hasAuthorized = ({ token }) => {
     return res.json();
   });
 };
+
+export default {
+  login,
+  hasAuthorized
+}

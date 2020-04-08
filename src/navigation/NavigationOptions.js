@@ -2,14 +2,6 @@ import { ScreenName } from '../constants';
 
 const screens = [
   {
-    name: ScreenName.AuthenticationStack,
-    headerTitle: '',
-  },
-  {
-    name: ScreenName.ProductStack,
-    headerTitle: ''
-  },
-  {
     name: ScreenName.Main,
     headerTitle: 'Ecommerce Store'
   },
@@ -52,10 +44,6 @@ const screens = [
   {
     name: ScreenName.Share,
     headerTitle: ''
-  },
-  {
-    name: ScreenName.DrawerNav,
-    headerTitle: '',
   },
 ]
 
