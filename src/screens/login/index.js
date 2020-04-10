@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, TextInput, Platform, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Platform, KeyboardAvoidingView, Alert } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginBackground from '../../assets/img/login-background.svg';
