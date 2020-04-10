@@ -45,6 +45,10 @@ const screens = [
     name: ScreenName.Share,
     headerTitle: ''
   },
+  {
+    name: ScreenName.ProductList,
+    headerTitle: ''
+  },
 ]
 
 export const getScreenOptions = name => {

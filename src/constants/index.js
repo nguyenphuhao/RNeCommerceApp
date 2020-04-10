@@ -14,4 +14,5 @@ export const ScreenName = {
   Email: 'Email',
   Call: 'Call',
   Share: 'Share',
+  ProductList: 'ProductList'
 };

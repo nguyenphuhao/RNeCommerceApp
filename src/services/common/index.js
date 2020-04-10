@@ -3,7 +3,6 @@ export const toFormData = body => {
   if (body) {
     const entries = Object.entries(body);
     for (const [key, value] of entries) {
-      console.log([key, value]);
       formData.append(key, value);
     }
   }

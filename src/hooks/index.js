@@ -1,0 +1,1 @@
+export {default as useGetProductByCategory} from './useGetProductByCategory';

@@ -1,28 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import CategoryItem from '../categoryItem';
 import styles from './styles';
-import { ScrollView, Image, Text } from 'react-native';
-import unescape from 'lodash/unescape';
+import ItemList from '../../itemList';
 
-const CategoryList = ({ categories }) => {
+const CategoryList = (props) => {
+  const { categories, onPressItem } = { ...props };
   return (
-    <>
-      {categories && categories.length ? (
-        <ScrollView style={styles.cateList} horizontal={true}>
-          {categories.map(c => {
-            return (
-              <View key={c.id} style={styles.cateItem}>
-                <Image style={styles.cateImg} source={{ uri: 'http:' + c.thumb }} />
-                <Text style={styles.cateName}>{unescape(c.name)}</Text>
-              </View>
-            );
-          })}
-        </ScrollView>
-      ) : (
-        <></>
-      )}
-    </>
+    <ItemList
+      {...props}
+      style={styles.cateList}
+      data={categories}
+      horizontal={true}
+      renderItem={({ item }) => <CategoryItem item={item} onPressItem={onPressItem} />}
+      keyExtractor={item => item.category_id}
+    />
   );
-};
+}
 
 export default CategoryList;

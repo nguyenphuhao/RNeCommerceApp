@@ -1,4 +1,7 @@
-import { GET_CATEGORIES } from '../actions/CatalogAction';
+import {
+  GET_CATEGORIES, 
+  GET_PRODUCTS_BY_CATEGORY 
+} from '../actions/CatalogAction';
 const initialState = {
   categories: [],
 }
@@ -8,6 +11,11 @@ export const catalogReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload.categories,
+      }
+    case GET_PRODUCTS_BY_CATEGORY:
+      return {
+        ...state,
+        products: action.payload.products,
       }
     default:
       return state;

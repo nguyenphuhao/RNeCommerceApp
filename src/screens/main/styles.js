@@ -1,5 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { TextSize, Color } from '../../styles';
+import { Responsive } from '../../utils';
+
+const { height, width } = Dimensions.get('window'); // device height and width
+const { verticalScale } = Responsive(width, height);
 export default StyleSheet.create({
   header: {
     backgroundColor: Color.background.color,
@@ -29,5 +33,37 @@ export default StyleSheet.create({
   },
   searchInput: {
     backgroundColor: '#fff',
+  },
+  cateList: {
+    backgroundColor: '#fff',
+    marginBottom: 10,
+    borderColor: '#ebebeb',
+    borderWidth: 1,
+    height: verticalScale(120),
+  },
+  productSection: {
+    backgroundColor: '#fff',
+    padding: 10
+  },
+  productGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  productGroupText: {
+    fontSize: TextSize.NORMAL_SIZE,
+    color: Color.background.color,
+  },
+  viewAllButton: {
+    backgroundColor: Color.background.color,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 3,
+  },
+  viewAllText: {
+    color: '#fff',
+    fontSize: TextSize.TINY_SIZE,
+    fontWeight: 'bold',
   },
 });

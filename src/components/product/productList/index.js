@@ -31,7 +31,8 @@ const ProductList = ({ data, onPressProductItem }) => {
                 >
                   {category.products && category.products.length ? (
                     category.products.map((product) => {
-                      return <ProductItem product={product} onPressProductItem={onPressProductItem} />;
+                      // return <ProductItem product={product} onPressProductItem={onPressProductItem} />;
+                      return <View></View>;
                     })
                   ) : (
                       <Text style={styles.noProduct}>No Product</Text>

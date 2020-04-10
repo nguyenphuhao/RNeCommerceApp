@@ -11,6 +11,7 @@ import {
   ShareScreen,
   MainScreen,
   ProductDetailScreen,
+  ProductListScreen
 } from '../screens';
 import { AppHeaderBar } from '../components';
 
@@ -31,6 +32,10 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name={ScreenName.ProductDetail}
         component={ProductDetailScreen}
+      />
+      <Stack.Screen
+        name={ScreenName.ProductList}
+        component={ProductListScreen}
       />
       <Stack.Screen
         name={ScreenName.Profile}

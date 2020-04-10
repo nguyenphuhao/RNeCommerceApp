@@ -11,3 +11,4 @@ export {default as RegistrationScreen} from './registration';
 export {default as ShareScreen} from './share';
 export {default as WishListScreen} from './wishlist';
 export {default as SplashScreen} from './splash';
+export {default as ProductListScreen} from './productlist';

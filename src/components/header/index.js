@@ -6,6 +6,7 @@ import styles from "./styles";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import * as Options from '../../navigation/NavigationOptions';
+import unescape from 'lodash/unescape';
 
 export const HeaderMenuButton = () => {
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ export const HeaderBackButton = () => {
   return (
     <TouchableOpacity>
       <Icon
-        onPress={navigation.goBack}
+        onPress={() => {navigation.goBack(null)}}
         name='arrow-left'
         type='font-awesome'
         color='#fff'
@@ -59,7 +60,8 @@ export const HeaderRight = (props) => {
 
 export const HeaderCenter = (props) => {
   const route = useRoute();
-  const chilrend = props.chilrend || <Text style={styles.headerTitle}>{Options.getScreenOptions(route.name).headerTitle}</Text>
+  const title = route.params && route.params.title;
+  const chilrend = props.chilrend || <Text style={styles.headerTitle}>{title ? unescape(title) : unescape(Options.getScreenOptions(route.name).headerTitle)}</Text>
   return (
     <View>
       {chilrend}
