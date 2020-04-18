@@ -1,5 +1,5 @@
 import { request } from '../common';
-import { unauthorized, token as tokenConst } from '../../constants';
+import { unauthorized } from '../../constants';
 export const login = ({ loginname, password }) => {
   const url = global.API.customer.login;
   return request(url, {
@@ -12,12 +12,6 @@ export const login = ({ loginname, password }) => {
       }
       return res.json();
     })
-    .then(({ token }) => {
-      if (token) {
-        return token;
-      }
-      throw new Error(unauthorized);
-    });
 };
 
 export const hasAuthorized = ({ token }) => {

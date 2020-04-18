@@ -23,7 +23,11 @@ export default StyleSheet.create({
   input: {
     height: 60,
   },
-
+  errorMessage: {
+    marginLeft: 10,
+    color: 'red'
+  },
+  
   background: {
     position: 'absolute',
     top: 0,

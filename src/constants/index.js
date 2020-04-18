@@ -16,3 +16,8 @@ export const ScreenName = {
   Share: 'Share',
   ProductList: 'ProductList'
 };
+export const info = 'info';
+export const warning = 'warning';
+export const success = 'success';
+export const danger = 'danger';
+export * from './actionTypes';

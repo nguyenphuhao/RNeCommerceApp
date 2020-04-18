@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Platform, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Platform, KeyboardAvoidingView, Alert, LayoutAnimation } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginBackground from '../../assets/img/login-background.svg';
@@ -9,20 +9,58 @@ import { ScreenName } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { AuthContext } from '../../contexts';
+import { validation } from '../../utils';
+import { Modal } from '../../components';
+
+const ErrorMessage = ({ hasError, message }) => {
+  return hasError ? (<Text style={styles.errorMessage}>{message}</Text>) : <Text></Text>;
+}
+
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn } = useContext(AuthContext);
-
+  const [validationForm, setValidationForm] = useState({
+    userNameBlank: [false, ''],
+    passwordBlank: [false, '']
+  });
+  const [isSigningIn, setSigningIn] = useState(false);
+  const { userToken, signIn } = useContext(AuthContext);
   const onPressSignIn = () => {
-    signIn({ loginname: emailAddress, password: password }).catch((error) => {
-      Alert.alert('Login', error.message, [
-        { text: 'OK', onPress: () => { } },
-      ]);
-    });
+
+    const hasError = validate();
+    if (!hasError) {
+      setSigningIn(true);
+      signIn({ loginname: emailAddress, password: password }).then(() => {
+        setSigningIn(false);
+      }).catch((error) => {
+        setSigningIn(-1);
+      });
+
+    }
   };
+
+  const validate = () => {
+    let error = false;
+    let result = {
+      userNameBlank: [false, ''],
+      passwordBlank: [false, '']
+    };
+    if (validation.isEmpty(emailAddress)) {
+      result.userNameBlank = [true, 'Enter username, please!'];
+      error = true;
+    }
+
+    if (validation.isEmpty(password)) {
+      result.passwordBlank = [true, 'Enter password, please!'];
+      error = true;
+    }
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    setValidationForm(result);
+
+    return error;
+  }
 
   const onPressSignUp = () => {
     navigation.navigate(ScreenName.Registration);
@@ -58,6 +96,7 @@ const LoginScreen = () => {
               value={emailAddress}
               onChangeText={setEmailAddress}
             />
+            <ErrorMessage hasError={validationForm.userNameBlank[0]} message={validationForm.userNameBlank[1]} />
             <Input
               containerStyle={styles.input}
               testId={'tstPassword'}
@@ -66,6 +105,7 @@ const LoginScreen = () => {
               value={password}
               onChangeText={setPassword}
             />
+            <ErrorMessage hasError={validationForm.passwordBlank[0]} message={validationForm.passwordBlank[1]} />
             <Text
               testId={'tstForgotPassword'}
               style={styles.forgotPasswordText}
@@ -73,6 +113,7 @@ const LoginScreen = () => {
               Forgot Password ?
             </Text>
             <Button
+              loading={isSigningIn === true}
               testId={'tstSignIn'}
               title="SIGN IN"
               onPress={() => {
@@ -100,6 +141,17 @@ const LoginScreen = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      <Modal
+        isVisible={isSigningIn === -1}
+        type='warning'
+        title='Opps, Something went wrong'
+        description='Username or Password is incorrect!'
+        buttons={[
+          {
+            title: 'OK',
+            onPress: () => { setSigningIn(false) }
+          },
+        ]} />
     </>
   );
 };

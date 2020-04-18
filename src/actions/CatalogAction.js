@@ -1,5 +1,7 @@
-export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const GET_PRODUCTS_BY_CATEGORY = 'GET_PRODUCTS_BY_CATEGORY';
+import {
+  GET_CATEGORIES,
+  GET_PRODUCTS_BY_CATEGORY
+} from '../constants';
 
 export const getCategories = (categories) => {
   return {
@@ -22,6 +24,4 @@ export const getProductsByCategories = (products) => {
 export default {
   getCategories,
   getProductsByCategories,
-  GET_CATEGORIES,
-  GET_PRODUCTS_BY_CATEGORY
 }

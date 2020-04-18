@@ -1,7 +1,7 @@
 import {
   GET_CATEGORIES, 
   GET_PRODUCTS_BY_CATEGORY 
-} from '../actions/CatalogAction';
+} from '../constants';
 const initialState = {
   categories: [],
 }
