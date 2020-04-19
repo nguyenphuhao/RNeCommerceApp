@@ -6,7 +6,6 @@ import styles from './styles';
 import {
   no_internet_connection,
   no_internet_connection_message,
-  cancel,
   ok,
   turn_on,
 } from '../../constants';
