@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   token,
+  bypass_login
 } from '../constants';
 import { AuthAPI } from '../services';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -11,12 +12,13 @@ const useAuth = () => {
     const bootstrapAsync = async () => {
       const authToken = await AsyncStorage.getItem(token);
       if (authToken) {
-        try {
-          console.log(authToken)
-          await AuthAPI.hasAuthorized({ token: authToken });
-          setUserToken(authToken);
-        } catch (error) {
-          setUserToken(null);
+        if (authToken != bypass_login) {
+          try {
+            await AuthAPI.hasAuthorized({ token: authToken });
+            setUserToken(authToken);
+          } catch (error) {
+            setUserToken(null);
+          }
         }
       }
     };
@@ -29,7 +31,12 @@ const useAuth = () => {
     setUserToken(data.token);
   };
 
-  return [userToken, signIn];
+  const byPassLogin = async () => {
+    await AsyncStorage.setItem(token, bypass_login);
+    setUserToken(bypass_login);
+  }
+
+  return [userToken, signIn, byPassLogin];
 }
 
 export default useAuth;

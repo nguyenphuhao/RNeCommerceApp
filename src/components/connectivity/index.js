@@ -1,27 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert  } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import DeviceSettings from 'react-native-device-settings';
 import styles from './styles';
+import {
+  no_internet_connection,
+  no_internet_connection_message,
+  cancel,
+  ok,
+  turn_on,
+} from '../../constants';
 
 const Connectivity = () => {
-  const [isConnected, setConnected] = useState(true);
+  const [state, setState] = useState({
+    isConnected: true,
+  });
   useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
-      console.log('TestConnect', state.isConnected)
-      setConnected(state.isConnected);
+    const unsubscribe = NetInfo.addEventListener(s => {
+      if (state.isConnected != s.isConnected) {
+        if (!s.isConnected) {
+          Alert.alert(
+            no_internet_connection,
+            no_internet_connection_message,
+            [
+              {
+                text: ok,
+                onPress: () => { },
+              },
+              {
+                text: turn_on,
+                onPress: () => { DeviceSettings.wifi(); },
+              },
+            ]
+          );
+        }
+        setState({
+          isConnected: s.isConnected,
+        });
+      }
     });
     return function cleanup() {
       unsubscribe();
     }
-  })
+  }, [state])
 
-  if (!isConnected) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.message}>No Internet Connection</Text>
-      </View>
-    )
-  }
-  return null;
+  console.log('Conectivity', state);
+  return (
+    <>
+      {!state.isConnected && (
+        <View style={styles.container}>
+          <Text style={styles.message}>{no_internet_connection}</Text>
+        </View>
+      )}
+    </>
+  );
 }
 export default Connectivity;

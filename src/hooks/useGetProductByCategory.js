@@ -32,7 +32,6 @@ const useGetProductByCategory = ({ categoryId , rows = 5, page = 1 }) => {
       const { page, rows, records } = state;
       if ((Number(page) * Number(rows)) <= Number(records)) {
         const nextPage = page + 1;
-        console.log(nextPage)
         CatalogAPI.getProductByCategory({ categoryId, rows, page: nextPage}).then(result => {
           setState(prevState => ({
             products: prevState.products.concat(result.rows),

@@ -1,10 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { View, Platform, KeyboardAvoidingView, Alert, LayoutAnimation } from 'react-native';
+import { View, Platform, KeyboardAvoidingView, LayoutAnimation, Vibration } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginBackground from '../../assets/img/login-background.svg';
 import styles from './styles';
-import { ScreenName } from '../../constants';
+import { 
+  ScreenName,
+  something_wrong,
+  ok,
+  username_password_not_correct,
+  warning,
+} from '../../constants';
 
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -16,7 +22,6 @@ const ErrorMessage = ({ hasError, message }) => {
   return hasError ? (<Text style={styles.errorMessage}>{message}</Text>) : <Text></Text>;
 }
 
-
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [emailAddress, setEmailAddress] = useState('');
@@ -26,7 +31,7 @@ const LoginScreen = () => {
     passwordBlank: [false, '']
   });
   const [isSigningIn, setSigningIn] = useState(false);
-  const { userToken, signIn } = useContext(AuthContext);
+  const { userToken, signIn, byPassLogin } = useContext(AuthContext);
   const onPressSignIn = () => {
 
     const hasError = validate();
@@ -35,6 +40,7 @@ const LoginScreen = () => {
       signIn({ loginname: emailAddress, password: password }).then(() => {
         setSigningIn(false);
       }).catch((error) => {
+        Vibration.vibrate(1000);
         setSigningIn(-1);
       });
 
@@ -67,10 +73,11 @@ const LoginScreen = () => {
   };
 
   const onPressSkipLogin = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: ScreenName.Main }],
-    });
+    byPassLogin();
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: ScreenName.Main }],
+    // });
   };
 
   return (
@@ -143,12 +150,12 @@ const LoginScreen = () => {
       </KeyboardAvoidingView>
       <Modal
         isVisible={isSigningIn === -1}
-        type='warning'
-        title='Opps, Something went wrong'
-        description='Username or Password is incorrect!'
+        type={warning}
+        title={something_wrong}
+        description={username_password_not_correct}
         buttons={[
           {
-            title: 'OK',
+            title: ok,
             onPress: () => { setSigningIn(false) }
           },
         ]} />

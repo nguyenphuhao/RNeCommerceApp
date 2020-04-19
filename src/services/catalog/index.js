@@ -17,7 +17,6 @@ export const getCategories = () => {
 
 export const getProductByCategory = ({categoryId, rows = defaultRows, page = defaultPage}) => {
   const url = `${global.API.catalog.productlist}&category_id=${categoryId}&rows=${rows}&page=${page}`;
-  console.log(url);
   return sendRequest(url)
     .then(res => {
       if (!res.ok) {

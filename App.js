@@ -22,10 +22,11 @@ const App = () => {
   if (auth === null) {
     return <SplashScreen />;
   } else {
-    const [userToken, signIn] = auth;
+    const [userToken, signIn, byPassLogin] = auth;
     const authContext = {
       userToken,
-      signIn
+      signIn,
+      byPassLogin
     };
     return (
       <Provider store={store}>

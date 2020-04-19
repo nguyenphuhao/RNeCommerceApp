@@ -11,7 +11,6 @@ import { AuthAPI } from '../services';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const signIn = function* (user) {
-  console.log(LOGIN_REQUEST);
   try {
     const authToken = yield call(AuthAPI.login, user);
     yield call(AsyncStorage.setItem, token, authToken);
