@@ -45,9 +45,7 @@ const Modal = ({ type, title, description, buttons, isVisible }) => {
           <View style={styles.buttons}>
             {buttons.map((button, index) => {
               return (
-                <>
-                  <Button buttonStyle={styles.button} key={index} {...button} />
-                </>
+                <Button buttonStyle={styles.button} key={'modal-button-'+index} {...button} />
               )
             })}
           </View>

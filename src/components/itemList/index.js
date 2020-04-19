@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FlatList, ActivityIndicator, Text } from 'react-native';
 import { Color } from '../../styles';
 import styles from './styles';
+import * as Animatable from 'react-native-animatable';
 
 
 const ItemList = (props) => {
@@ -9,7 +10,10 @@ const ItemList = (props) => {
   return (
     <>
       {props.isFetching ? (
-        <ActivityIndicator style={styles.footerIndicator} size="small" color={Color.background.color} />
+        <Animatable.View animation='flipInX'>
+          <ActivityIndicator style={styles.footerIndicator} size="small" color={Color.background.color} />
+        </Animatable.View>
+        
       ) : (
           <FlatList
             {...props}
