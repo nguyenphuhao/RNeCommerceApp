@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, ActivityIndicator, Text } from 'react-native';
+import { FlatList, ActivityIndicator, View } from 'react-native';
 import { Color } from '../../styles';
 import styles from './styles';
 import * as Animatable from 'react-native-animatable';
@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 const ItemList = (props) => {
   const [refreshing, setRefreshing] = useState(false);
   return (
-    <>
+    <View style={props.containerStyle}>
       {props.isFetching ? (
         <Animatable.View animation='flipInX'>
           <ActivityIndicator style={styles.footerIndicator} size="small" color={Color.background.color} />
@@ -30,8 +30,7 @@ const ItemList = (props) => {
             onEndReachedThreshold={0.05}
           />
       )}
-    </>
-
+    </View>
   )
 }
 

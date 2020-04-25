@@ -17,3 +17,5 @@ export { default as ProductList } from './product/productList';
 export { default as ItemList } from './itemList';
 export { default as Connectivity } from './connectivity';
 export { default as Modal } from './modal';
+export { default as OrderItem } from './orders/orderItem';
+export { default as TextLink } from './link';

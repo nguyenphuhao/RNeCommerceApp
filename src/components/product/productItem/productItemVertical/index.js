@@ -12,7 +12,7 @@ const ProductItemVertical = ({ product }) => {
     >
       <Image style={styles.productImg} source={{ uri: 'http:' + cell.thumb }} />
       <View style={styles.productInfo}>
-        <Text style={styles.productName}>{cell.name}</Text>
+        <Text>{cell.name}</Text>
         <View style={styles.price}>
           <Text style={styles.boldText}>{cell.price} {cell.currency_code}</Text>
           {cell.discount && cell.discount.oldPrice && (

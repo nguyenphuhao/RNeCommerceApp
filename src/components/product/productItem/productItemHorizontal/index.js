@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import styles from './styles';
-import { Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ProductItemHorizontal = ({ product, onPressProductItem }) => {

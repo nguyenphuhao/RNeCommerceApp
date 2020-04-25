@@ -4,13 +4,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Text, Divider } from 'react-native-elements';
 import { Color } from '../../styles';
 import styles from './styles';
-import * as NavigationOptions from '../../navigation/NavigationOptions';
+import { ScreenName } from '../../constants';
 import {
   DrawerContentScrollView,
   DrawerItem,
 } from '@react-navigation/drawer';
-
-const { ScreenName } = NavigationOptions;
 
 const DrawerIcon = ({ name }) => {
   const iconStyle = {

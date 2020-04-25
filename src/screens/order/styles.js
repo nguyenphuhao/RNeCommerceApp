@@ -1,31 +1,28 @@
-import { StyleSheet } from 'react-native';
-import { TextSize, Color } from '../../styles';
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: Color.background.color,
-    borderBottomWidth: 0,
+import { StyleSheet, Dimensions } from 'react-native';
+import { TextSize } from '../../styles';
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  headerTitle: {
-    fontSize: TextSize.BIG_SIZE,
-    color: '#fff',
-    fontStyle: 'italic',
+  itemList: {
+    flex: 1,
   },
-  headerRight: {
-    color: '#fff',
-    fontSize: TextSize.NORMAL_SIZE,
-  },
-  headerLeft: {
-    color: '#fff',
-    fontSize: TextSize.NORMAL_SIZE,
-  },
-  search: {
-    paddingHorizontal: 12,
-    paddingBottom: 10,
-    backgroundColor: Color.background.color,
-    borderTopWidth: 0,
-  },
-  searchInput: {
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     backgroundColor: '#fff',
   },
+  dateText: {
+    fontSize: TextSize.TINY_SIZE
+  }
 });
-export default styles;

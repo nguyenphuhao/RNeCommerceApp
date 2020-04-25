@@ -31,7 +31,7 @@ const screens = [
   },
   {
     name: ScreenName.Orders,
-    headerTitle: ''
+    headerTitle: 'My Orders'
   },
   {
     name: ScreenName.Email,
