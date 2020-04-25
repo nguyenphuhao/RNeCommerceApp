@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import styles from './styles';
 const EmailScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={styles.container}>
       <Text>Email</Text>
     </View>
   );

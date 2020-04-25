@@ -10,7 +10,7 @@ const ProductItemHorizontal = ({ product, onPressProductItem }) => {
       style={styles.productItem}
     >
       <Image style={styles.productImg} source={{ uri: product.img }} />
-      <Text style={styles.productName}>{product.productName}</Text>
+      <Text>{product.productName}</Text>
       <View style={styles.price}>
         <Text style={styles.boldText}>{product.price}</Text>
         {product.discount && product.discount.oldPrice && (

@@ -4,7 +4,7 @@ import { TextSize, Color } from '../../../../styles';
 import { Responsive } from '../../../../utils';
 
 const { height, width } = Dimensions.get('window'); // device height and width
-const { moderateScale, verticalScale } = Responsive(width, height);
+const { verticalScale } = Responsive(width, height);
 export default StyleSheet.create({
   productList: {
     padding: 10,
@@ -63,7 +63,6 @@ export default StyleSheet.create({
     width: '75%',
     height: '75%',
   },
-  productName: {},
   noProduct: {
     textAlign: 'center',
     paddingVertical: 10,
