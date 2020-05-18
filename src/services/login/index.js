@@ -1,23 +1,33 @@
+import { request } from '../common';
+import { unauthorized } from '../../constants';
 export const login = ({ loginname, password }) => {
   const url = global.API.customer.login;
-  const formBody = new FormData();
-  formBody.append('loginname', loginname);
-  formBody.append('password', password);
-  console.log({ loginname, password });
-  return fetch(url, {
+  return request(url, {
     method: 'POST',
-    body: formBody,
+    body: { loginname, password },
   })
     .then(res => {
       if (!res.ok) {
-        throw Error('Login failed.');
+        throw new Error(unauthorized);
       }
       return res.json();
     })
-    .then(({ token }) => {
-      if (token) {
-        return token;
-      }
-      throw Error('Login failed.');
-    });
 };
+
+export const hasAuthorized = ({ token }) => {
+  const url = global.API.customer.login;
+  return request(url, {
+    method: 'POST',
+    body: { token },
+  }).then(res => {
+    if (!res.ok) {
+      throw new Error(unauthorized);
+    }
+    return res.json();
+  });
+};
+
+export default {
+  login,
+  hasAuthorized
+}

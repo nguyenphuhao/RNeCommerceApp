@@ -31,18 +31,20 @@ const ProductDetail = ({ product }) => {
           )}
         </View>
       </View>
-      <View style={styles.productColor}>
-        <Text style={styles.productColorTitle}>Select color:</Text>
-        <View style={styles.productColorList}>
-          {product.colors.map(color => {
-            return (
-              <Text key={color} style={styles.productColorItem}>
-                {color}
-              </Text>
-            );
-          })}
+      {product.colors && (
+        <View style={styles.productColor}>
+          <Text style={styles.productColorTitle}>Select color:</Text>
+          <View style={styles.productColorList}>
+            {product.colors.map((color) => {
+              return (
+                <Text key={color} style={styles.productColorItem}>
+                  {color}
+                </Text>
+              );
+            })}
+          </View>
         </View>
-      </View>
+      )}
       <View style={styles.productDesc}>
         <Text style={styles.productDescTitle}>Description</Text>
         <Text style={styles.productDescText}>{product.description}</Text>

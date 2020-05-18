@@ -1,4 +1,1 @@
-module.exports = {
-  root: true,
-  extends: '@react-native-community',
-};
+module.exports = { "extends": "plugin:prettier/recommended" };

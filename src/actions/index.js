@@ -1,5 +1,2 @@
-import * as HelloAction from './HelloAction';
-
-export const actions = {
-  ...HelloAction,
-};
+export {default as AuthAction} from './AuthAction';
+export {default as CatalogAction} from './CatalogAction';

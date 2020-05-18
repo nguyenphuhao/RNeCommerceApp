@@ -1,25 +1,39 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 import 'react-native-gesture-handler';
-import React from 'react';
-import { createStore } from 'redux';
+import React, { useEffect } from 'react';
+import { UIManager } from 'react-native';
 import { Provider } from 'react-redux';
-import combineReducers from './src/reducers';
-import LoginScreen from './src/screens/login/LoginScreen';
+import configureStore from './configureStore';
+import AppNavigation from './src/navigation';
+import { AuthContext } from './src/contexts';
+import { SplashScreen } from './src/screens';
+import { useAuth } from './src/hooks';
+import { Connectivity } from './src/components';
 
-const initialState = {};
-const store = createStore(combineReducers, initialState);
+const store = configureStore();
 
-class App extends React.Component {
-  render() {
+const App = () => {
+  useEffect(() => {
+    if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }, []);
+
+  const auth = useAuth();
+  if (auth === null) {
+    return <SplashScreen />;
+  } else {
+    const [userToken, signIn, byPassLogin] = auth;
+    const authContext = {
+      userToken,
+      signIn,
+      byPassLogin
+    };
     return (
       <Provider store={store}>
-        <LoginScreen />
+        <AuthContext.Provider value={authContext}>
+          <Connectivity />
+          <AppNavigation />
+        </AuthContext.Provider>
       </Provider>
     );
   }

@@ -1,24 +1,33 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { TextSize, Color } from '../../styles';
+import { Responsive } from '../../utils';
+
+const { height, width } = Dimensions.get('window'); // device height and width
+const { verticalScale } = Responsive(width, height);
 export default StyleSheet.create({
+  keyBoardView: {
+    flex: 1,
+  },
   container: {
-    flex: 12,
+    flex: 1,
     padding: 10,
+    height: height - 30,
   },
   caption: {
-    flex: 6,
+    height: verticalScale(250),
     textAlignVertical: 'center',
     textAlign: 'center',
-    ...Color.caption,
+    color: '#fff',
     elevation: 1,
   },
-  form: {
-    flex: 3,
+  input: {
+    height: 60,
   },
-  action: {
-    flex: 2,
-    marginTop: -20,
+  errorMessage: {
+    marginLeft: 10,
+    color: 'red'
   },
+  
   background: {
     position: 'absolute',
     top: 0,
@@ -30,15 +39,17 @@ export default StyleSheet.create({
     ...Color.link,
     ...TextSize.normal,
     textAlign: 'right',
+    marginBottom: 10,
   },
   signUpText: {
     ...Color.link,
     ...TextSize.normal,
     textAlign: 'center',
-    marginTop: 6,
+    marginTop: 10,
   },
   skipLogin: {
-    flex: 1,
+    position: 'absolute',
+    bottom: 0,
     justifyContent: 'flex-end',
     alignSelf: 'center',
   },
