@@ -41,19 +41,19 @@ export const HeaderBackButton = () => {
 
 export const HeaderLeft = () => {
   const navigation = useNavigation();
-  const chilrend = navigation.canGoBack() ? <HeaderBackButton /> : <HeaderMenuButton />
+  const children = navigation.canGoBack() ? <HeaderBackButton /> : <HeaderMenuButton />
   return (
     <View style={styles.headerLeft}>
-      {chilrend}
+      {children}
     </View>
   )
 }
 
 export const HeaderRight = (props) => {
-  const chilrend = props.chilrend || <Icon name='shopping-cart' type='font-awesome' size={30} color='#fff' />
+  const children = props.children || <Icon name='shopping-cart' type='font-awesome' size={30} color='#fff' />
   return (
     <TouchableOpacity style={styles.headerRight}>
-      {chilrend}
+      {children}
     </TouchableOpacity>
   )
 }
@@ -61,10 +61,10 @@ export const HeaderRight = (props) => {
 export const HeaderCenter = (props) => {
   const route = useRoute();
   const title = route.params && route.params.title;
-  const chilrend = props.chilrend || <Text style={styles.headerTitle}>{title ? unescape(title) : unescape(Options.getScreenOptions(route.name).headerTitle)}</Text>
+  const children = props.children || <Text style={styles.headerTitle}>{title ? unescape(title) : unescape(Options.getScreenOptions(route.name).headerTitle)}</Text>
   return (
     <View>
-      {chilrend}
+      {children}
     </View>
   );
 }
