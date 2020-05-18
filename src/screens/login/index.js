@@ -74,10 +74,6 @@ const LoginScreen = () => {
 
   const onPressSkipLogin = () => {
     byPassLogin();
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: ScreenName.Main }],
-    // });
   };
 
   return (

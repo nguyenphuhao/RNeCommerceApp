@@ -43,7 +43,6 @@ const Connectivity = () => {
     }
   }, [state])
 
-  console.log('Conectivity', state);
   return (
     <>
       {!state.isConnected && (

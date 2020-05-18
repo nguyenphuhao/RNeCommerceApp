@@ -17,7 +17,7 @@ const ItemList = (props) => {
       ) : (
           <FlatList
             {...props}
-            data={props.data && props.data ? props.data : []}
+            data={props.data && props.data.length ? props.data : []}
             keyExtractor={item => item.id}
             refreshing={refreshing}
             onRefresh={() => {
