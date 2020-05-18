@@ -9,14 +9,10 @@ const OrderScreen = () => {
       <ItemList
         containerStyle={styles.itemList}
         data={orders}
-        renderItem={({ item }) => <OrderItem product={item} />}
+        renderItem={({ item }) => <OrderItem item={item} />}
         keyExtractor={item => item.id}
         isFetching={false}
       />
-      <View style={styles.footer}>
-        <TextLink onPress={() => {console.log('test')}}>View Order Details</TextLink>
-        <Text style={styles.dateText}>Date</Text>
-      </View>
     </View>
   )
 };

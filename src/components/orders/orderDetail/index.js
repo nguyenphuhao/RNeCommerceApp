@@ -2,16 +2,16 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 import TextLink from '../../link';
-const OrderItem = ({ item }) => {
+const OrderDetail = ({ item }) => {
   return (
     <>
       {item ? (
-        <View 
+        <View
           style={styles.container}
           onPress={() => { onPressItem(item); }}>
           <View style={styles.row}>
-            <Text style={styles.col}>{`Order Id: ${item.order_id}`}</Text>
-            <Text style={styles.col}>{`Status: ${item.status}`}</Text>
+            <Text style={styles.col}>{`Order Id:`}</Text>
+            <Text style={styles.col}>{item.order_id}</Text>
           </View>
 
           <View style={styles.row}>
@@ -24,7 +24,7 @@ const OrderItem = ({ item }) => {
             <Text style={styles.col}>{`Total: ${item.total}`}</Text>
           </View>
 
-          <View style={{...styles.row, ...styles.footer}}>
+          <View style={{ ...styles.row, ...styles.footer }}>
             <TextLink onPress={() => { console.log('test') }}>View Order Details</TextLink>
           </View>
         </View>
@@ -34,4 +34,4 @@ const OrderItem = ({ item }) => {
   );
 };
 
-export default OrderItem;
+export default OrderDetail;
